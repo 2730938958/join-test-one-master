@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yizhi.student.dao.StudentInfoDao">
+    <resultMap id="BaseResultMap" type="com.yizhi.student.domain.StudentInfoDO" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="student_id" property="studentId" jdbcType="VARCHAR" />
+        <result column="exam_id" property="examId" jdbcType="VARCHAR" />
+        <result column="class_id" property="classId" jdbcType="INTEGER" />
+        <result column="student_name" property="studentName" jdbcType="VARCHAR" />
+        <result column="certify" property="certify" jdbcType="VARCHAR" />
+        <result column="mail_address" property="mailAddress" jdbcType="VARCHAR" />
+        <result column="foreign_lanaguage" property="foreignLanaguage" jdbcType="VARCHAR" />
+        <result column="student_sex" property="studentSex" jdbcType="VARCHAR" />
+        <result column="nation" property="nation" jdbcType="VARCHAR" />
+        <result column="political" property="political" jdbcType="VARCHAR" />
+        <result column="card_id" property="cardId" jdbcType="VARCHAR" />
+        <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+        <result column="subject_type" property="subjectType" jdbcType="INTEGER" />
+        <result column="tocollege" property="tocollege" jdbcType="INTEGER" />
+        <result column="tocampus" property="tocampus" jdbcType="INTEGER" />
+        <result column="tomajor" property="tomajor" jdbcType="INTEGER" />
+        <result column="birthplace" property="birthplace" jdbcType="VARCHAR" />
+        <result column="grade" property="grade" jdbcType="VARCHAR" />
+        <result column="isstate" property="isstate" jdbcType="INTEGER" />
+        <result column="birthday" property="birthday" jdbcType="DATE" />
+        <result column="note" property="note" jdbcType="VARCHAR" />
+        <result column="add_time" property="addTime" jdbcType="DATE" />
+        <result column="add_userid" property="addUserid" jdbcType="INTEGER" />
+        <result column="edit_time" property="editTime" jdbcType="DATE" />
+        <result column="edit_userid" property="editUserid" jdbcType="INTEGER" />
+
+    </resultMap>
+
+    <select id="get" resultMap="BaseResultMap">
+        select * from s_student_info where id = #{id};
+    </select>
+
+    <select id="list" resultMap="BaseResultMap">
+        select * from s_student_info limit #{start},#{pageSize};
+    </select>
+
+    <select id="listByMap" resultMap="BaseResultMap">
+        select * from s_student_info
+        <where>
+            <if test="map.name!=null">
+                and student_name like concat('%',#{map.name},'%')
+            </if>
+            <if test="map.tocollegeId!=null">
+                and tocollege = #{map.tocollegeId}
+            </if>
+            <if test="map.tomajorId!=null">
+                and tomajor = #{map.tomajorId}
+            </if>
+            <if test="map.classId!=null">
+                and class_id = #{map.classId}
+            </if>
+        </where>
+        limit #{map.start},#{map.pageSize};
+    </select>
+
+
+    <delete id="remove" parameterType="java.lang.Integer" >
+        delete from s_student_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="batchRemove" parameterType="int[]" >
+        delete from s_student_info
+        where id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+        #{id}
+        </foreach>
+    </delete>
+
+    <insert id="save" parameterType="com.yizhi.student.domain.StudentInfoDO" >
+
+        insert into s_student_info (student_id, exam_id, class_id,student_name, certify, mail_address,foreign_lanaguage,student_sex
+        ,nation,political,card_id,telephone,subject_type,tocollege,tocampus,tomajor,birthplace,grade,isstate,birthday
+        ,note,add_time,add_userid,edit_time,edit_userid)
+        values (#{studentId,jdbcType=VARCHAR}, #{examId,jdbcType=VARCHAR}, #{classId,jdbcType=INTEGER},#{studentName,jdbcType=VARCHAR},
+                #{certify,jdbcType=VARCHAR}, #{mailAddress,jdbcType=VARCHAR},#{foreignLanaguage,jdbcType=VARCHAR},
+                #{studentSex,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR},#{political,jdbcType=VARCHAR},
+                #{cardId,jdbcType=VARCHAR},#{telephone,jdbcType=VARCHAR},#{subjectType,jdbcType=INTEGER},
+                #{tocollege,jdbcType=INTEGER},#{tocampus,jdbcType=INTEGER},#{tomajor,jdbcType=INTEGER},
+                #{birthplace,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{isstate,jdbcType=INTEGER},
+                #{birthday,jdbcType=DATE},#{note,jdbcType=VARCHAR},#{addTime,jdbcType=DATE},
+                #{addUserid,jdbcType=VARCHAR},#{editTime,jdbcType=DATE},#{editUserid,jdbcType=VARCHAR})
+    </insert>
+
+
+    <update id="update" parameterType="com.yizhi.student.domain.StudentInfoDO" >
+        update s_student_info
+        set student_id=#{studentId,jdbcType=VARCHAR}, exam_id=#{examId,jdbcType=VARCHAR}, class_id=#{classId,jdbcType=INTEGER},student_name=#{studentName,jdbcType=VARCHAR},
+            certify=#{certify,jdbcType=VARCHAR}, mail_address=#{mailAddress,jdbcType=VARCHAR},foreign_lanaguage=#{foreignLanaguage,jdbcType=VARCHAR},student_sex=#{studentSex,jdbcType=VARCHAR}
+          ,nation=#{nation,jdbcType=VARCHAR},political=#{political,jdbcType=VARCHAR},card_id=#{cardId,jdbcType=VARCHAR},telephone=#{telephone,jdbcType=VARCHAR},subject_type=#{subjectType,jdbcType=INTEGER},tocollege=#{tocollege,jdbcType=INTEGER},tocampus=#{tocampus,jdbcType=INTEGER},
+           tomajor=#{tomajor,jdbcType=INTEGER},birthplace=#{birthplace,jdbcType=VARCHAR},grade=#{grade,jdbcType=VARCHAR},isstate=#{isstate,jdbcType=INTEGER},birthday=#{birthday,jdbcType=DATE}
+          ,note=#{note,jdbcType=VARCHAR},add_time=#{addTime,jdbcType=DATE},add_userid=#{addUserid,jdbcType=VARCHAR},edit_time=#{editTime,jdbcType=DATE},edit_userid=#{editUserid,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+
+</mapper>
