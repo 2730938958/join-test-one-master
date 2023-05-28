@@ -95,7 +95,7 @@
             certify=#{certify,jdbcType=VARCHAR}, mail_address=#{mailAddress,jdbcType=VARCHAR},foreign_lanaguage=#{foreignLanaguage,jdbcType=VARCHAR},student_sex=#{studentSex,jdbcType=VARCHAR}
           ,nation=#{nation,jdbcType=VARCHAR},political=#{political,jdbcType=VARCHAR},card_id=#{cardId,jdbcType=VARCHAR},telephone=#{telephone,jdbcType=VARCHAR},subject_type=#{subjectType,jdbcType=INTEGER},tocollege=#{tocollege,jdbcType=INTEGER},tocampus=#{tocampus,jdbcType=INTEGER},
            tomajor=#{tomajor,jdbcType=INTEGER},birthplace=#{birthplace,jdbcType=VARCHAR},grade=#{grade,jdbcType=VARCHAR},isstate=#{isstate,jdbcType=INTEGER},birthday=#{birthday,jdbcType=DATE}
-          ,note=#{note,jdbcType=VARCHAR},add_time=#{addTime,jdbcType=DATE},add_userid=#{addUserid,jdbcType=VARCHAR},edit_time=#{editTime,jdbcType=DATE},edit_userid=#{editUserid,jdbcType=VARCHAR}
+          ,note=#{note,jdbcType=VARCHAR},add_time=#{addTime,jdbcType=DATE},add_userid=#{addUserid,jdbcType=INTEGER},edit_time=#{editTime,jdbcType=DATE},edit_userid=#{editUserid,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
 

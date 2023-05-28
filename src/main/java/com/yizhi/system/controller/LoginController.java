@@ -35,6 +35,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController extends BaseController {
@@ -55,7 +56,7 @@ public class LoginController extends BaseController {
 
 	//@Log("请求访问主页")
 	@GetMapping({ "/index" })
-	String index(Model model) {
+	String index(Model model, HttpSession session) {
 		List<Tree<MenuDO>> menus = menuService.listMenuTree(getUserId());
 		model.addAttribute("menus", menus);
 		model.addAttribute("name", getUser().getName());
@@ -70,6 +71,7 @@ public class LoginController extends BaseController {
 			model.addAttribute("picUrl","/img/photo_s.jpg");
 		}
 		model.addAttribute("username", getUser().getUsername());
+		session.setAttribute("userid", getUser().getUserId());
 		model.addAttribute("userid", getUser().getUserId());
 		return "index_v1";
 	}

@@ -24,6 +24,11 @@ import org.springframework.web.bind.annotation.*;
 
 import com.yizhi.student.domain.StudentInfoDO;
 import com.yizhi.student.service.StudentInfoService;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * 生基础信息表
@@ -42,8 +47,12 @@ public class StudentInfoController {
 	@PostMapping("/save")
 	@RequiresPermissions("student:studentInfo:add")
 	public R save(StudentInfoDO studentInfoDO){
+		HttpServletRequest request =((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		HttpSession session=request.getSession();
+		Long userid = (Long) session.getAttribute("userid");
 		Date date = new Date();
 		studentInfoDO.setAddTime(date);
+		studentInfoDO.setEditUserid(userid.intValue());
 		studentInfoService.save(studentInfoDO);
 		return R.ok();
 	}
@@ -76,8 +85,12 @@ public class StudentInfoController {
 	@PostMapping("/update")
 	@RequiresPermissions("student:studentInfo:edit")
 	public R update(StudentInfoDO studentInfo){
+		HttpServletRequest request =((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		HttpSession session=request.getSession();
+		Long userid = (Long) session.getAttribute("userid");
 		Date date = new Date();
 		studentInfo.setEditTime(date);
+		studentInfo.setEditUserid(userid.intValue());
 		studentInfoService.update(studentInfo);
 		return R.ok();
 	}
