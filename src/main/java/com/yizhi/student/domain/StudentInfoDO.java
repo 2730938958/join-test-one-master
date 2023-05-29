@@ -64,10 +64,14 @@ public class StudentInfoDO implements Serializable {
 	//备注
 	private String note;
 	//添加时间
+
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
 	private Date addTime;
 	//添加人
 	private Integer addUserid;
 	//修改时间
+
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
 	private Date editTime;
 	//修改人
 	private Integer editUserid;

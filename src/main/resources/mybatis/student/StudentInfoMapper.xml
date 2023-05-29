@@ -85,8 +85,8 @@
                 #{cardId,jdbcType=VARCHAR},#{telephone,jdbcType=VARCHAR},#{subjectType,jdbcType=INTEGER},
                 #{tocollege,jdbcType=INTEGER},#{tocampus,jdbcType=INTEGER},#{tomajor,jdbcType=INTEGER},
                 #{birthplace,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{isstate,jdbcType=INTEGER},
-                #{birthday,jdbcType=DATE},#{note,jdbcType=VARCHAR},#{addTime,jdbcType=DATE},
-                #{addUserid,jdbcType=VARCHAR},#{editTime,jdbcType=DATE},#{editUserid,jdbcType=VARCHAR})
+                #{birthday,jdbcType=DATE},#{note,jdbcType=VARCHAR},#{addTime,jdbcType=TIMESTAMP},
+                #{addUserid,jdbcType=VARCHAR},#{editTime,jdbcType=TIMESTAMP},#{editUserid,jdbcType=VARCHAR})
     </insert>
 
 
