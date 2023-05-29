@@ -43,16 +43,17 @@
     <select id="listByMap" resultMap="BaseResultMap">
         select * from s_student_info
         <where>
-            <if test="map.name!=null">
+            1=1
+            <if test="map.name!=null and map.name!=''">
                 and student_name like concat('%',#{map.name},'%')
             </if>
-            <if test="map.tocollegeId!=null">
+            <if test="map.tocollegeId!=null and map.tocollegeId!=''">
                 and tocollege = #{map.tocollegeId}
             </if>
-            <if test="map.tomajorId!=null">
+            <if test="map.tomajorId!=null and map.tomajorId!=''">
                 and tomajor = #{map.tomajorId}
             </if>
-            <if test="map.classId!=null">
+            <if test="map.classId!=null and map.classId!=''">
                 and class_id = #{map.classId}
             </if>
         </where>
